@@ -1,0 +1,432 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background: black;
+  color: white;
+  font-family: system-ui, -apple-system, sans-serif;
+  /* Reverted to system font */
+}
+
+
+
+
+/* Basic Grid Styling */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* Responsive columns */
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Center the grid */
+  padding: 1rem;
+
+  h1 {
+    font-family: 'maya', serif;
+  }
+}
+
+/* Cell Styling */
+.cell {
+  aspect-ratio: 1;
+  /* Keep cells square */
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* Subtle shadow */
+  background-color: #222;
+  /* Dark background */
+}
+
+.cell:hover {
+  transform: scale(1.05);
+  /* Slight zoom on hover */
+  opacity: 1;
+}
+
+.cell.inactive {
+  opacity: 0.7;
+  /* Slightly less dim inactive cells */
+  cursor: not-allowed;
+  /* Indicate not clickable */
+  filter: grayscale(70%);
+  /* Add grayscale instead of full opacity reduction */
+}
+
+/* Image Styling */
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Cover the cell area */
+  transition: opacity 0.3s ease;
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  padding: 2rem;
+  overflow: auto;
+  /* Allow scrolling if content overflows */
+}
+
+.modal.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  max-width: 800px;
+  width: 90%;
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  /* Stronger shadow for modal */
+  max-height: 90vh;
+  overflow-y: auto;
+
+  /* Scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: #444 #222;
+}
+
+/* Webkit browsers scrollbar styling (Chrome, Safari, etc) */
+.modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #222;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+.slideshow-container img {
+  max-width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 auto;
+  cursor: pointer;
+  display: block;
+  /* Center horizontally with auto margins */
+}
+
+.slideshow-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.slideshow-navigation button {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  transition: background-color 0.3s;
+}
+
+.slideshow-navigation button:hover {
+  background: rgba(50, 50, 50, 0.9);
+}
+
+#slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.slide-dot {
+  width: 12px;
+  height: 12px;
+  background: #666;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slide-dot.active {
+  background: #fff;
+}
+
+/* Story Text Styling */
+.story-text {
+  margin-top: 1rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #ddd;
+  /* Lighter text color */
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* Special styling for text-centered items */
+.modal-content.text-centered .story-text {
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Special maya font class for item 15 */
+.maya-font {
+  font-family: 'maya', system-ui, -apple-system, Arial, sans-serif;
+}
+
+.story-link {
+  display: block;
+  margin-top: 1rem;
+  color: #60a5fa;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.story-link:hover {
+  text-decoration: underline;
+  color: #93c5fd;
+}
+
+/* Close Button Styling */
+.close-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  z-index: 1010;
+  /* Ensure it stays above other modal content */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: #ddd;
+}
+
+/* Button Container Styling */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+/* Button Styling */
+.button {
+  padding: 0.75rem 1.5rem;
+  background: #b65b2b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+  background: #a94f1e;
+  transform: translateY(-2px);
+  /* Slight lift on hover */
+}
+
+/* Source Button Styling */
+.source-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: #374151;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 100;
+  /* Ensure it's visible above other elements */
+  margin-left: 10px;
+  /* Add space between multiple buttons */
+}
+
+.source-button:hover {
+  background: #4b5563;
+}
+
+/* Position the second source button properly */
+.source-button:nth-of-type(2) {
+  right: 10.5rem;
+  /* Position it to the left of the first button */
+}
+
+/* Source Modal Styling */
+.source-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  padding: 2rem;
+  overflow: auto;
+  /* Allow scrolling */
+}
+
+.source-modal.active {
+  display: block;
+}
+
+.source-content {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+
+  /* Scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: #444 #222;
+}
+
+.source-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.source-content::-webkit-scrollbar-track {
+  background: #222;
+  border-radius: 4px;
+}
+
+.source-content::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.source-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Pre Styling (for source code) */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  color: #eee;
+  font-size: 0.9rem;
+}
+
+/* Media Queries (for responsiveness) */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    /* Smaller columns on small screens */
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .modal img {
+    max-height: 400px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  /* Prevent progress bar from overflowing */
+}
+
+#progress-bar {
+  height: 10px;
+  background-color: #4CAF50;
+  width: 0%;
+  /* Initial width */
+  transition: width 0.3s ease;
+  /* Smooth transition */
+  border-radius: 4px;
+}
+
+#day-message {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #f0f0f0;
+  /* Adjust color as needed */
+  margin-bottom: 1rem;
+  text-align: center;
+  /* Center the text */
+
+  padding: 10px;
+
+
+}
+
+/* Custom Maya font */
+@font-face {
+  font-family: 'maya';
+  src: url('public/fonts/maya.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* But only use it for specific items */
