@@ -1,0 +1,95 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Bio Story - Chatting with Claire</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script>
+        // Display day of the week and then load the grid, from Addiction
+        function initArray() {
+            this.length = initArray.arguments.length;
+            for (var i = 0; i < this.length; i++)
+                this[i + 1] = initArray.arguments[i];
+        }
+
+        var DOWArray = new initArray("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        var today = new Date();
+
+        var day = DOWArray[today.getDay()];
+        // document.getElementById("day-message").textContent = "Today is " + day + "! Join me here :)";
+
+        // Display the day of the week
+        //alert("Today is " + day + "!");
+    </script> -->
+    <!-- <script>
+        // Day of week functionality 
+        function getDayOfWeek() {
+
+
+            // Modified window.onload to include day message
+            window.onload = function () {
+                // Get day of week
+                const DOWArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const today = new Date();
+                const day = DOWArray[today.getDay()];
+
+                // Update the existing element with day message
+                const dayMessage = document.getElementById('day-message');
+                if (dayMessage) {
+                    dayMessage.textContent = "Today is " + day + "! Join me here :)";
+                }
+
+                // Initialize the grid
+                initializeGrid();
+
+            };
+    </script> -->
+</head>
+
+<body>
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+
+
+    <div class="grid" id="imageGrid"></div>
+    <div class="button-container">
+        <button class="button" onclick="regenerateActive()">
+            Shuffle Active Items
+        </button>
+        <button class="button" onclick="showAll()">
+            Show All Items
+        </button>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">×</button>
+            <div class="slideshow-container">
+                <div id="slideshow-images"></div>
+                <div class="slideshow-navigation">
+                    <button id="prev-slide" onclick="prevSlide()">❮</button>
+                    <div id="slide-dots"></div>
+                    <button id="next-slide" onclick="nextSlide()">❯</button>
+                </div>
+            </div>
+            <div class="story-text" id="storyText"></div>
+        </div>
+    </div>
+
+    <button class="source-button" onclick="toggleSource()">View Source</button>
+    <button class="source-button" onclick="downloadFromGitHub()">Download from GitHub</button>
+
+    <div class="source-modal" id="sourceModal">
+        <div class="source-content">
+            <button class="close-button" onclick="toggleSource()">×</button>
+            <pre id="sourceCode"></pre>
+        </div>
+    </div>
+    <button id="clear-progress-button">Clear Progress</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
